@@ -1,0 +1,6 @@
+# Do not get the theme, that is separate
+themes/**/*
+themes.toml
+
+# Do not backup the old files
+config_backups/
