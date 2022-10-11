@@ -4,3 +4,6 @@ themes.toml
 
 # Do not backup the old files
 config_backups/
+
+# ignore symlinked config.ron
+config.ron

@@ -12,8 +12,14 @@
     modkey: "Mod4",
     mousekey: "Mod4",
     workspaces: [
-        (y: 0, x: 0, height:1080, width: 1920, id: 0)
-        //(y: 0, x: 1920, height:1080, width: 1920, id: 1)
+        (y: 0, x: 0, height:1080, width: 1920, id: 0),
+        (y: 0, x: 1920, height:1080, width: 1920, id: 1),
+    ],
+    gutter: [
+        // set a 20 pixel margin on the left side of workspace id 1
+        ( side: Left, value: 20, wsid: 1 ),
+        // set a 20 pixel margin on the right side of workspace id 0
+        ( side: Right, value: 20, wsid: 0 )
     ],
     tags: [
         "1",
@@ -26,7 +32,6 @@
         "8",
         "9",
     ],
-    max_window_width: None,
     layouts: [
         MainAndVertStack,
         Monocle,
@@ -41,7 +46,10 @@
     ],
     window_rules: [
         ( window_class: "looking-glass-client", spawn_on_tag: 9 ),
-        (window_class: "dnfdragora-updater", spawn_floating: true),
+        ( window_class: "dnfdragora-updater", spawn_floating: true ),
+        ( window_class: "Steam", spawn_on_tag: 7, spawn_floating: true ),
+        ( window_class: "Code", spawn_on_tag: 2 ),
+        ( window_class: "obs", spawn_on_tag: 5 ),
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
