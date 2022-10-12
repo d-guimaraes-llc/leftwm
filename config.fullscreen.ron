@@ -13,19 +13,17 @@
     mousekey: "Mod4",
     workspaces: [
         (y: 0, x: 0, height:1080, width: 3840)
-        //(y: 0, x: 0, height:1080, width: 1920, id: 0)
-        //(y: 0, x: 1920, height:1080, width: 1920, id: 1)
     ],
     tags: [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
+        "α",
+        "β",
+        "γ",
+        "δ",
+        "ε",
+        "ζ",
+        "η",
+        "θ",
+        "ι",
     ],
     max_window_width: None,
     layouts: [
@@ -47,6 +45,7 @@
         (window_class: "Steam", spawn_on_tag: 7, spawn_floating: true),
         (window_class: "Code", spawn_on_tag: 2),
         (window_class: "obs", spawn_on_tag: 5),
+        // Spawning wine in a virtual window
         (window_class: "explorer.exe", spawn_floating: true),
     ],
     disable_current_tag_swap: false,
