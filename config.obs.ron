@@ -53,6 +53,8 @@
         (window_class: "Steam", spawn_on_tag: 7, spawn_floating: true),
         (window_class: "Code", spawn_on_tag: 2),
         (window_class: "obs", spawn_on_tag: 5),
+        // Spawning wine in a virtual window
+        (window_class: "explorer.exe", spawn_floating: true),
     ],
     disable_current_tag_swap: false,
     disable_tile_drag: false,
