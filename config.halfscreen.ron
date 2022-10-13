@@ -115,6 +115,7 @@
         (command: MoveToTag, value: "9", modifier: ["modkey", "Shift"], key: "9"),
         (command: ToggleFullScreen, value: "", modifier: ["modkey", "Shift"], key: "f"),
         (command: ToggleScratchPad, value: "Alacritty", modifier: ["modkey"], key: "a"),
+        (command: ToggleScratchPad, value: "Alacritty", modifier: ["modkey"], key: "a"),
     ],
     state_path: None,
 )

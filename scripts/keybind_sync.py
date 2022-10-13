@@ -1,17 +1,18 @@
 #!/usr/bin/env python
 
+import string
 import subprocess
 import os
 import re
 from collections import deque
 from pprint import pprint as pp
 
-
-FILEPATH = "/home/danielg/.config/leftwm"
+FILEPATH = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir, os.pardir))
 FILE = "config.ron"
 NUM_BACKUPS = 5
 BACKUPS_DIR = os.path.join(FILEPATH, "config_backups")
 
+print(FILEPATH, FILE)
 
 def get_current_config_file() -> str:
     command1 = ["/usr/bin/ls", "-l", os.path.join(FILEPATH, FILE)]
@@ -51,51 +52,56 @@ def extract_keybinds_from_current(config_dict: dict, current: str) -> list:
     keybinds = []
     for config_name, config in config_dict.items():
         if config_name in current:
-            extract = False
-            for line in config:
-                if extract:
-                    keybinds.append(line)
-                elif "keybind" in line:
-                    extract = True
+            start_idx = find_start_idx(config, "keybind")
+            end_idx = find_end_idx(config, start_idx)
+            for i in range(start_idx, end_idx):
+                keybinds.append(config[i])
     return keybinds
 
 
 def update_keybinds_to_other_configs(config_dict: dict, keybinds: list, current: str):
     for config_name, config in config_dict.items():
         if config_name not in current:
-            overwrite = False
+            start_idx = find_start_idx(config, "keybind")
+            end_idx = find_end_idx(config, start_idx)
             new_config = []
-            for line in config:
-                if overwrite:
-                    config_dict[config_name] = new_config + keybinds
-                    break  # inner for, continue outer for
-                elif "keybind" in line:
-                    overwrite = True
-                new_config.append(line)
+            for i in range(0, start_idx):
+                new_config.append(config[i])
+            for item in keybinds:
+                new_config.append(item)
+            for i in range(end_idx, len(config)):
+                new_config.append(config[i])
 
 
-def find_keybind_idx(config: list) -> int:
+def find_start_idx(config: list, section: string) -> int:
     for idx, line in enumerate(config):
-        if "keybind" in line:
+        if section in line:
+            return idx + 1  # start on next line
+
+
+def find_end_idx(config: list, idx: int):
+    while True:
+        idx += 1
+        if config[idx].endswith("],\n"):
             return idx
 
 
-def validate_configs(config_dict: dict, current: str) -> tuple:
+def validate_configs(config_dict: dict, current: str, section: str) -> tuple:
     valid = False
     errors = []
     current_config = load_config_file(current)
     for config_name, config in config_dict.items():
         if config_name not in current:
-            current_keybind_idx = find_keybind_idx(current_config)
-            to_validate_config_idx = find_keybind_idx(config)
-            while current_keybind_idx < len(current_config):
-                if current_config[current_keybind_idx] != config[to_validate_config_idx]:
+            current_config_idx = find_start_idx(current_config, section)
+            to_validate_config_idx = find_start_idx(config, section)
+            while current_config_idx < len(current_config):
+                if current_config[current_config_idx] != config[to_validate_config_idx]:
                     errors.append({
                         "line": to_validate_config_idx,
                         "config": config_name,
                     })
                     break
-                current_keybind_idx += 1
+                current_config_idx += 1
                 to_validate_config_idx += 1
     if len(errors) == 0:
         valid = True
@@ -149,7 +155,7 @@ if __name__ == "__main__":
     keybinds = extract_keybinds_from_current(config_dict, current_config_file)
     backup_old_configs(config_dict, current_config_file)
     update_keybinds_to_other_configs(config_dict, keybinds, current_config_file)
-    (valid, errors) = validate_configs(config_dict, current_config_file)
+    (valid, errors) = validate_configs(config_dict, current_config_file, "keybind")
     if valid:
         write_new_configs(config_dict, current_config_file)
     else:
