@@ -12,7 +12,6 @@
     modkey: "Mod4",
     mousekey: "Mod4",
     workspaces: [
-        //(y: 0, x: 0, height:1080, width: 3840)
         (y: 0, x: 0, height:1080, width: 1920, id: 0),
         (y: 0, x: 1920, height:1080, width: 1920, id: 1),
     ],
@@ -32,6 +31,7 @@
         "η",
         "θ",
         "ι",
+        "κ"
     ],
     max_window_width: None,
     layouts: [
@@ -49,7 +49,6 @@
     ],
     window_rules: [
         (window_class: "looking-glass-client", spawn_on_tag: 9),
-        (window_class: "dnfdragora-updater", spawn_floating: true),
         (window_class: "Steam", spawn_on_tag: 7, spawn_floating: true),
         (window_class: "Code", spawn_on_tag: 2),
         (window_class: "obs", spawn_on_tag: 5),
@@ -115,6 +114,7 @@
         (command: GotoTag, value: "7", modifier: ["modkey"], key: "7"),
         (command: GotoTag, value: "8", modifier: ["modkey"], key: "8"),
         (command: GotoTag, value: "9", modifier: ["modkey"], key: "9"),
+        (command: GotoTag, value: "10", modifier: ["modkey"], key: "0"),
         (command: MoveToTag, value: "1", modifier: ["modkey", "Shift"], key: "1"),
         (command: MoveToTag, value: "2", modifier: ["modkey", "Shift"], key: "2"),
         (command: MoveToTag, value: "3", modifier: ["modkey", "Shift"], key: "3"),
@@ -124,6 +124,7 @@
         (command: MoveToTag, value: "7", modifier: ["modkey", "Shift"], key: "7"),
         (command: MoveToTag, value: "8", modifier: ["modkey", "Shift"], key: "8"),
         (command: MoveToTag, value: "9", modifier: ["modkey", "Shift"], key: "9"),
+        (command: MoveToTag, value: "10", modifier: ["modkey", "Shift"], key: "0"),
         (command: ToggleFullScreen, value: "", modifier: ["modkey", "Shift"], key: "f"),
         (command: ToggleScratchPad, value: "Alacritty", modifier: ["modkey"], key: "a"),
     ],
