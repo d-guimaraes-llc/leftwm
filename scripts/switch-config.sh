@@ -18,6 +18,24 @@ verbose=false
 # Parsing params with getopt
 options=$(getopt -l "help,obs,vebose" -o "hov" -a -- "$@")
 
+showHelp () {
+    echo "This tool switches between a few different leftwm configs"
+    echo "By default, it switches between 3840x1080 and 1920x1080"
+    echo "By passing a flag you can also switch it to obs mode (3840x1080 with 2 workspaces)"
+    echo "Example calls"
+    echo "switch-config.sh"
+    echo "switch-config.sh --verbose --obs"
+    echo "switch-config.sh -v"
+    echo ""
+    echo ""
+    echo ""
+    echo "Flags:"
+    echo "-v --verbose   Verbose mode"
+    echo "-h --help      Get this help screen"
+    echo "-o --obs       Switch to obs mode"
+    echo "Note: if in obs mode, calling with no flag will go back to Fullsceen mode"
+}
+
 eval set -- "$options"
 while true
 do
@@ -41,24 +59,6 @@ done
 
 print_str () {
     if $verbose; then echo "$1"; fi
-}
-
-show_help () {
-    echo "This tool switches between a few different leftwm configs"
-    echo "By default, it switches between 3840x1080 and 1920x1080"
-    echo "By passing a flag you can also switch it to obs mode (3840x1080 with 2 workspaces)"
-    echo "Example calls"
-    echo "switch-config.sh"
-    echo "switch-config.sh --verbose --obs"
-    echo "switch-config.sh -v"
-    echo ""
-    echo ""
-    echo ""
-    echo "Flags:"
-    echo "-v --verbose   Verbose mode"
-    echo "-h --help      Get this help screen"
-    echo "-o --obs       Switch to obs mode"
-    echo "Note: if in obs mode, calling with no flag will go back to Fullsceen mode"
 }
 
 print_str "Getting current config file"
