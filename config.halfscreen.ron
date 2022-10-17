@@ -12,8 +12,7 @@
     modkey: "Mod4",
     mousekey: "Mod4",
     workspaces: [
-        (y: 0, x: 0, height:1080, width: 1920, id: 0),
-        (y: 0, x: 1920, height:1080, width: 1920, id: 1),
+        (y: 0, x: 0, height:1080, width: 1920),
     ],
     tags: [
         "α",
