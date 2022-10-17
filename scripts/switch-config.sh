@@ -17,7 +17,7 @@ verbose=false
 obs=false
 
 # Parsing params with getopt
-options=$(getopt -l "help,obs,vebose" -o "hov" -a -- "$@")
+options=$(getopt -l "help,obs,verbose" -o "hov" -a -- "$@")
 
 showHelp () {
     echo "This tool switches between a few different leftwm configs"
