@@ -9,8 +9,12 @@ LINK="config.ron"
 MONITORTYPES=(DisplayPort HDMI DVI)
 
 ## These modes are specific to my monitor, I should get these dynamically
-halfMode="1920X1080"
+halfMode="1920x1080"
 fullMode="3840x1080"
+
+## Defaults, these can be modified by flags
+verbose=false
+obs=false
 
 # Parsing params with getopt
 options=$(getopt -l "help,obs,vebose" -o "hov" -a -- "$@")
@@ -73,14 +77,18 @@ getMonitors () {
 ## We want to prefer --auto, but maybe we haven't switched our monitor to PiP yet
 #  This way we can force a mode, i.e. $halfmode or $fullmode
 setScreen () {
+    print_str "In the set screen function"
     local output="$1"
+    print_str "Got output: $output"
     local mode="$2"
+    print_str "Got mode: $mode"
     if [ -z "$mode" ]; then
-        local command="--mode $mode"
+        print_str "No mode passed in, going with generic --auto"
+        $(xrandr --output "$output" --auto)
     else
-        local command="--auto"
+        print_str "Mode passed it, going with --mode $mode"
+        $(xrandr --output "$output" --mode "$mode")
     fi
-    $(xrandr --output "$output $command")
 }
 
 ## This was the original function of this program
