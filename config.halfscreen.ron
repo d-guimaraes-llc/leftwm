@@ -77,7 +77,7 @@
          modifier: ["modkey", "Shift"],
          key: "e"),
         (command: Execute,
-         value: "flatpak run dev.lapce.lapce",
+         value: "lapce",
          modifier: ["modkey", "Shift"],
          key: "c"),
         (command: Execute, value: "virt-manager", modifier: ["modkey"], key: "v"),
