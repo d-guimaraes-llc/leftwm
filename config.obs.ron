@@ -42,8 +42,8 @@
     layout_mode: Tag,
     insert_behavior: Bottom,
     scratchpad: [
-      ( name: "Alacritty",
-        value: "alacritty",
+      ( name: "Kitty",
+        value: "kitty",
         x: 25.0, y: 135, height: 810, width: 50.0,
       ),
     ],
