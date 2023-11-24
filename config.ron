@@ -12,8 +12,8 @@
     modkey: "Mod4",
     mousekey: "Mod4",
     workspaces: [
-        // ( output: "HDMI-A-2", y: 0, x: 0, height:1080, width: 3840 )
-        ( output: "HDMI-A-2", y: 0, x: 0, height:1080, width: 1920, id: 0 ),
+        // ( output: "HDMI-A-2", y: 0, x: 0, height:1080, width: 3840, max_window_width: 1220 )
+        // ( output: "HDMI-A-2", y: 0, x: 0, height:1080, width: 1920, id: 0 ),
         // ( output: "HDMI-A-2", y: 0, x: 1920, height:1080, width: 1920, id: 1 ),
     ],
     tags: [
@@ -28,8 +28,8 @@
         "ι",
         "κ"
     ],
-    max_window_width: None,
     layout_mode: Tag,
+    max_window_width: 0.35,
     layouts: [
         "CenterMainFluid",
         "MainAndVertStack",
@@ -75,6 +75,10 @@
          value: "brave",
          modifier: ["modkey"],
          key: "e"),
+        (command: Execute,
+         value: "lutris",
+         modifier: ["Mod1"],
+         key: "l"),
         (command: Execute,
          value: "brave --incognito",
          modifier: ["modkey", "Shift"],
